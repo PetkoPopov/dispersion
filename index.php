@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
+  
     <?php
     $globArr = [];
-    for ($i = 0; $i < 1000; $i++) {
+    $numBalls=1800;
+    $levels = 25 ; 
+    for ($i = 0; $i < $numBalls; $i++) {
         $sum = 0;
-        for ($e = 0; $e < 25; $e++) {
+        for ($e = 0; $e < $levels; $e++) {
             $sum += randomSum();
         }
         $globArr[] = $sum;
     }
     ////////////////////////////////
-    for ($i = 0; $i < 1000; $i++) {
+    for ($i = 0; $i < $numBalls; $i++) {
 
-        $globArr[$i] += 25;
+        $globArr[$i] += $levels;
     }
 
     //////////////////////////////////
@@ -27,22 +31,23 @@
     }
 
 ////////////////////////////////////////////
-    function view(Array $globArr) {
-        echo'<table sryle="border:solid black 2px">';
-        for ($e = 0; $e < 200; $e++) {
+    function view(Array $globArr , int $numBalls , int $levels) {
+        echo'<table>';
+        for ($e = 0; $e < $numBalls/5; $e++) {
             echo "<tr>";
-            for ($i = 0; $i < 50; $i++) {
+            for ($i = $levels*2; $i > 0; $i--) {
 
 
                 if (array_key_exists($i, $globArr) && $globArr[$i] != 0) {
                     $globArr[$i]--;
-                    $color = 'style="background-color:red"';
-                    echo "<td $color>";
+                    $color = 'style="background-color:red ; width:5px ; height:5px"';
+                    echo "<td $color >";
                 } else {
-                    $color = 'style="background-color:yellow"';
+                    $color = 'style="background-color:yellow; width:5px ; height:5px"';
                     echo "<td $color>";
                 }
                 echo "</td>";
+                $i--;
             }
             echo"</tr>";
         }
@@ -63,7 +68,7 @@
 
     $globArr = reverseArr($globArr);
 //    var_dump($globArr);
-    view($globArr);
+    view($globArr,$numBalls,$levels);
     ?>
 </body>
 </html>

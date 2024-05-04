@@ -1,0 +1,12 @@
+table {
+    border-color:"solid black 5px";
+}
+
+tr{
+    border-color:"green";
+}
+
+td{
+    width:'10px';
+    height: "10px"
+}
